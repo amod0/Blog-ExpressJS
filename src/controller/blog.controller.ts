@@ -4,9 +4,8 @@ import { generateUniqueSlug } from "../middleware/slug.middleware";
 
 const createBlog = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log(req?.body);
+    // console.log(req?.body);
     const { title, content, keywords, slug: customSlug } = req.body;
-    8;
     const file = req.file;
 
     if (!title || !content || !keywords || !file) {

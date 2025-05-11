@@ -7,7 +7,7 @@ interface AuthRequest extends Request {
 }
 
 const protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
-  console.log(req?.body);
+  // console.log(req?.body);
 
   let token;
 

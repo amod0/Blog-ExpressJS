@@ -4,6 +4,7 @@ dotenv.config();
 import { dcConnect } from "./src/config/db.config";
 import userRouter from "./src/router/user.routes";
 import blogRouter from "./src/router/blog.routes";
+import commentRouter from "./src/router/comment.routes";
 import path from "path";
 
 dcConnect();
@@ -19,5 +20,7 @@ app.use("/uploads", express.static(path.join(__dirname, "./Uploads")));
 app.use("/api/user", userRouter);
 
 app.use("/api/blog", blogRouter);
+
+app.use("/api/comment", commentRouter);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
