@@ -11,7 +11,6 @@ import { protect, admin } from "../middleware/auth.middleware";
 import { upload } from "../middleware/media.middle";
 
 const router = express.Router();
-// @ts-ignore
 router.route("/create").post(protect, upload.single("thumbnail"), createBlog);
 router
   .route("/update/:slug")

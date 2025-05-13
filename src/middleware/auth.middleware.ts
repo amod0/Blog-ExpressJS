@@ -7,11 +7,7 @@ interface AuthRequest extends Request {
 }
 
 const protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
-  // console.log(req?.body);
-
-  let token;
-
-  token = req.headers.authorization;
+  let token = req.headers.authorization;
 
   if (token) {
     try {
@@ -19,8 +15,14 @@ const protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
         id: string;
       };
 
-      //@ts-ignore
-      req.user = await User.findById(decoded.id).select("-password");
+      const user = await User.findById(decoded.id).select("role");
+
+      if (!user) {
+        res.status(401).json({ message: "User not found" });
+        return;
+      }
+
+      req.user = user;
       if (!req.user) {
         res.status(401).json({ message: "User not found" });
         return;
