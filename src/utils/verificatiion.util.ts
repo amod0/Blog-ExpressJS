@@ -43,7 +43,7 @@ export async function verifyToken(
     const user = await User.findOne({ email });
 
     if (!user || !user.verifytoken) {
-      return { valid: false, message: "token nor found" };
+      return { valid: false, message: "token not found" };
     }
 
     if (user.verifyTokenExpiresAt && new Date() > user.verifyTokenExpiresAt) {

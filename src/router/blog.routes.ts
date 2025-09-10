@@ -6,6 +6,7 @@ import {
   getBlogBySlug,
   getAllBlogs,
   uploadImage,
+  search,
 } from "../controller/blog.controller";
 import { protect, admin } from "../middleware/auth.middleware";
 import { upload } from "../middleware/media.middle";
@@ -21,5 +22,7 @@ router.route("/").get(getAllBlogs);
 router
   .route("/upload-image")
   .post(protect, upload.single("image"), uploadImage);
+
+router.route("/search").get(search);
 
 export default router;
